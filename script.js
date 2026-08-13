@@ -1,35 +1,4 @@
-const menuToggle = document.querySelector(".menu-toggle");
-const navLinks = document.querySelector(".nav-links");
-
-menuToggle?.addEventListener("click", () => navLinks.classList.toggle("open"));
-document.querySelectorAll(".nav-links a").forEach(link => {
-  link.addEventListener("click", () => navLinks.classList.remove("open"));
-});
-
-const search = document.getElementById("resourceSearch");
-const filter = document.getElementById("resourceFilter");
-const cards = [...document.querySelectorAll(".resource-card")];
-
-function filterResources() {
-  const term = search.value.toLowerCase().trim();
-  const course = filter.value;
-  cards.forEach(card => {
-    const matchesText = card.dataset.search.includes(term);
-    const matchesCourse = course === "all" || card.dataset.course === course;
-    card.style.display = matchesText && matchesCourse ? "" : "none";
-  });
-}
-search?.addEventListener("input", filterResources);
-filter?.addEventListener("change", filterResources);
-
-const form = document.getElementById("contactForm");
-const formMessage = document.getElementById("formMessage");
-form?.addEventListener("submit", () => {
-  formMessage.textContent = "Sending your message…";
-});
-
-const topBtn = document.getElementById("topBtn");
-window.addEventListener("scroll", () => {
-  topBtn.style.display = window.scrollY > 500 ? "grid" : "none";
-});
-topBtn?.addEventListener("click", () => window.scrollTo({top:0, behavior:"smooth"}));
+const menuToggle=document.querySelector(".menu-toggle"),navLinks=document.querySelector(".nav-links");menuToggle?.addEventListener("click",()=>navLinks.classList.toggle("open"));document.querySelectorAll(".nav-links a").forEach(a=>a.addEventListener("click",()=>navLinks.classList.remove("open")));
+const search=document.getElementById("resourceSearch"),filter=document.getElementById("resourceFilter"),cards=[...document.querySelectorAll(".resource-card")];function filterResources(){const q=(search?.value||"").toLowerCase().trim(),c=filter?.value||"all";cards.forEach(x=>x.style.display=(x.dataset.search.includes(q)&&(c==="all"||x.dataset.course===c))?"":"none")}search?.addEventListener("input",filterResources);filter?.addEventListener("change",filterResources);
+const form=document.getElementById("contactForm"),msg=document.getElementById("formMessage");form?.addEventListener("submit",()=>{if(msg)msg.textContent="Sending your message…";});
+let familyPhotos=[],currentFamilyPhoto=0;function openFamilyPhoto(element){familyPhotos=Array.from(document.querySelectorAll(".family-photo img"));const clickedImage=element.querySelector("img");currentFamilyPhoto=familyPhotos.indexOf(clickedImage);showFamilyPhoto();document.getElementById("familyLightbox")?.classList.add("active");document.body.style.overflow="hidden"}function showFamilyPhoto(){if(!familyPhotos.length)return;const image=document.getElementById("familyLightboxImage");if(image){image.src=familyPhotos[currentFamilyPhoto].src;image.alt=familyPhotos[currentFamilyPhoto].alt}}function closeFamilyPhoto(){document.getElementById("familyLightbox")?.classList.remove("active");document.body.style.overflow=""}function previousFamilyPhoto(){if(!familyPhotos.length)return;currentFamilyPhoto=(currentFamilyPhoto-1+familyPhotos.length)%familyPhotos.length;showFamilyPhoto()}function nextFamilyPhoto(){if(!familyPhotos.length)return;currentFamilyPhoto=(currentFamilyPhoto+1)%familyPhotos.length;showFamilyPhoto()}document.addEventListener("keydown",e=>{const lb=document.getElementById("familyLightbox");if(!lb?.classList.contains("active"))return;if(e.key==="Escape")closeFamilyPhoto();if(e.key==="ArrowLeft")previousFamilyPhoto();if(e.key==="ArrowRight")nextFamilyPhoto()});document.getElementById("familyLightbox")?.addEventListener("click",e=>{if(e.target.id==="familyLightbox")closeFamilyPhoto()});
