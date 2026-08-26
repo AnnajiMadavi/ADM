@@ -11,6 +11,11 @@
             color: #334155;
             margin: 0;
             padding: 40px 20px;
+            /* Added smooth box-sizing for responsive scaling */
+            box-sizing: border-box; 
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
         }
         .cv-container {
             max-width: 850px;
@@ -44,6 +49,13 @@
         .contact-info p {
             margin: 6px 0;
         }
+        /* Table responsive wrapper */
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -73,6 +85,31 @@
         }
         strong {
             color: #0f172a;
+        }
+        /* --- MOBILE RESPONSIVE MEDIA QUERIES --- */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            .cv-container {
+                padding: 25px 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            h2 {
+                font-size: 1.15em;
+                margin-top: 25px;
+            }
+            .contact-info {
+                font-size: 0.95em;
+            }
+            th, td {
+                padding: 10px;
+            }
+            ul {
+                padding-left: 20px;
+            }
         }
     </style>
 </head>
