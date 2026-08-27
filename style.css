@@ -66,7 +66,7 @@ h2{font-size:clamp(31px,4vw,44px);margin-bottom:18px}
 .filter-row input,.filter-row select{padding:13px 14px;border:1px solid var(--line);border-radius:9px;background:#0524ed;font:inherit; font-size: larger; font: f8f8f5; outline:none}
 .filter-row input{flex:1}.filter-row select{min-width:170px}
 .resource-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.resource-card{background:#05f2de;border:1px solid var(--line);border-radius:15px;padding:23px;transition:.25s;box-shadow:0 7px 25px rgba(16,35,63,.04)}
+.resource-card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:23px;transition:.25s;box-shadow:0 7px 25px rgba(16,35,63,.04)}
 .resource-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#c8d9e7}
 .card-icon{font-size:26px;display:block;margin-bottom:10px}.tag{font-size:9px;letter-spacing:1.3px;font-weight:800;color:var(--blue)}
 .resource-card h3{font-family:"Playfair Display",serif;color:var(--navy);font-size:22px;margin:7px 0}
