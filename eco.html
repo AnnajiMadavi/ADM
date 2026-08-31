@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economics Department</title>
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #f4f7f6;
+            --text-color: #333;
+            --border-color: #ccc;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 2.2em;
+        }
+
+        h2 {
+            color: #555;
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+
+        /* Drop-down (Accordion) Styles */
+        details {
+            background-color: #fafafa;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        summary {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: '▼';
+            font-size: 0.8em;
+            transition: transform 0.3s;
+        }
+
+        details[open] > summary::after {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-content {
+            padding: 15px;
+        }
+
+        .semester-details {
+            margin-bottom: 10px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .semester-summary {
+            background-color: #e9ecef;
+            color: var(--text-color);
+            padding: 10px 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 5px 12px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .download-btn:hover {
+            background-color: #218838;
+        }
+
+        .cite {
+            font-size: 0.8em;
+            color: #777;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>ADARSH COLLEGE HINGOLI <span class="cite"></span></h1>
+        <h2>DEPARTMENT OF ECONOMICS <span class="cite"></span></h2>
+    </header>
+
+    <h3>B. A. ECONOMICS SYLLABUS <span class="cite"></span></h3>
+
+    <details>
+        <summary>B.A. FIRST YEAR <span class="cite"></span></summary>
+        <div class="dropdown-content">
+            <table>
+                <tr>
+                    <td>Semester-I</td>
+                    <td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td>
+                </tr>
+                <tr>
+                    <td>Semester-II</td>
+                    <td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td>
+                </tr>
+            </table>
+        </div>
+    </details>
+
+    <details>
+        <summary>B.A. SECOND YEAR <span class="cite"></span></summary>
+        <div class="dropdown-content">
+            <table>
+                <tr>
+                    <td>Semester-III</td>
+                    <td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td>
+                </tr>
+                <tr>
+                    <td>Semester-IV</td>
+                    <td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td>
+                </tr>
+            </table>
+        </div>
+    </details>
+
+    <details>
+        <summary>B.A. THIRD YEAR <span class="cite"></span></summary>
+        <div class="dropdown-content">
+            <table>
+                <tr>
+                    <td>Semester-V</td>
+                    <td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td>
+                </tr>
+                <tr>
+                    <td>Semester-VI</td>
+                    <td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td>
+                </tr>
+            </table>
+        </div>
+    </details>
+
+
+    <h3>B. A. ECONOMICS E-BOOKS/NOTES <span class="cite"></span></h3>
+
+    <details>
+        <summary>B.A. FIRST YEAR <span class="cite"></span></summary>
+        <div class="dropdown-content">
+            <details class="semester-details">
+                <summary class="semester-summary">Semester-I <span class="cite"></span></summary>
+                <div class="dropdown-content">
+                    <table>
+                        <tr><td>1) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>2) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>3) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>4) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                    </table>
+                </div>
+            </details>
+            <details class="semester-details">
+                <summary class="semester-summary">Semester-II <span class="cite"></span></summary>
+                <div class="dropdown-content">
+                    <table>
+                        <tr><td>1) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>2) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>3) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>4) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                    </table>
+                </div>
+            </details>
+        </div>
+    </details>
+
+    <details>
+        <summary>B.A. SECOND YEAR <span class="cite"></span></summary>
+        <div class="dropdown-content">
+            <details class="semester-details">
+                <summary class="semester-summary">Semester-I</summary>
+                <div class="dropdown-content">
+                    <table>
+                        <tr><td>1) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>2) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>3) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>4) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>5) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                    </table>
+                </div>
+            </details>
+            <details class="semester-details">
+                <summary class="semester-summary">Semester-II <span class="cite">[cite: 7]</span></summary>
+                <div class="dropdown-content">
+                    <table>
+                        <tr><td>1) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>2) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>3) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>4) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>5) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                    </table>
+                </div>
+            </details>
+        </div>
+    </details>
+
+    <details>
+        <summary>B.A. THIRD YEAR <span class="cite"></span></summary>
+        <div class="dropdown-content">
+            <details class="semester-details">
+                <summary class="semester-summary">Semester-I <span class="cite"></span></summary>
+                <div class="dropdown-content">
+                    <table>
+                        <tr><td>1) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>2) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>3) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>4) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>5) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>6) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                    </table>
+                </div>
+            </details>
+            <details class="semester-details">
+                <summary class="semester-summary">Semester-II <span class="cite"></span></summary>
+                <div class="dropdown-content">
+                    <table>
+                        <tr><td>1) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>2) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>3) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>4) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>5) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                        <tr><td>6) Book Name</td><td><a href="#" class="download-btn">View/Dowenload</a> <span class="cite"></span></td></tr>
+                    </table>
+                </div>
+            </details>
+        </div>
+    </details>
+
+</div>
+
+</body>
+</html>
