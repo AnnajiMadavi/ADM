@@ -48,7 +48,7 @@ if (!isset($_SESSION['student_name'])) {
 
     <!-- Paste the rest of your eco.html body content here -->
     <div class="page-content">
-        <h1>Welcome to the Eco Page</h1>
+        <h1>Welcome to the Economics E-Books/Notes Page</h1>
         <p>This page is now protected. Only logged-in students can see it.</p>
     </div>
 
@@ -208,7 +208,7 @@ if (!isset($_SESSION['student_name'])) {
 
   <nav class="nav container">
     <a class="brand" style="text-decoration: none;" href="https://annajimadavi.in">
-      <span class="brand-mark">  <img src=" images\logo\Dr.-Annaji-Madavi.jpg" height="120px" width="100px"></span>
+      <span class="brand-mark">  <img src=" adm2\images\Dr.-Annaji-Madavi.jpg" height="120px" width="100px"></span>
       <h3 >Dr. Annaji Madavi</h3>Head, Department of Economics</a>
       
   </nav>
