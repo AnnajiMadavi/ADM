@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Gallery | Dr. Annaji Madavi</title>
+
+  <!-- External Fonts & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- Link to the responsive CSS file -->
+ <style>
+    :root { --navy:#0d2038; --blue:#1976b8; --sky:#eaf5fc; --gold:#d6a64d; --text:#263548; --muted:#708092; --line:#e2e8ee; --white:#fff; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:"DM Sans",Arial,sans-serif; color:var(--text); background:var(--white); line-height:1.65; overflow-x:hidden; }
+    a { text-decoration:none; color:inherit; }
+    .container { width:min(1120px,92%); margin:auto; }
+
+    .site-header { position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.95); backdrop-filter:blur(12px); border-bottom:1px solid rgba(226,231,237,.8); }
+    .nav { height:74px; display:flex; align-items:center; justify-content:space-between; }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:700; color:var(--navy); }
+    .brand-mark { width:36px; height:36px; border-radius:10px; display:grid; place-items:center; background:var(--navy); color:#fff; font-family:Georgia,serif; font-size:21px; }
+    .brand-mark img { border-radius:4px; object-fit:cover; }
+    .nav-links { display:flex; align-items:center; gap:25px; font-size:14px; font-weight:600; }
+    .nav-links a:hover { color:var(--blue); }
+    .menu-toggle { display:none; border:0; background:none; font-size:25px; color:var(--navy); cursor:pointer; }
+
+    .page-hero { text-align:center; padding:4rem 1rem; background:linear-gradient(to bottom,#ffffff,#f9fbfd); border-bottom:1px solid var(--line); }
+    .eyebrow { font-size:0.85rem; font-weight:700; color:var(--blue); letter-spacing:2px; text-transform:uppercase; }
+    .page-hero h1 { font-family:'Playfair Display',serif; font-size:3rem; color:var(--navy); margin:1rem 0; }
+    .page-hero p { color:var(--muted); max-width:600px; margin:0 auto; font-size:1.1rem; }
+
+    .section { padding:4rem 0; }
+    .gallery-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:24px; grid-auto-flow:dense; }
+    .gallery-item { position:relative; border-radius:12px; overflow:hidden; background:var(--white); box-shadow:0 4px 10px rgba(0,0,0,0.05); transition:transform 0.3s ease,box-shadow 0.3s ease; display:flex; flex-direction:column; }
+    .gallery-item.tall { grid-row:span 2; }
+    .gallery-item:hover { transform:translateY(-5px); box-shadow:0 15px 30px rgba(0,0,0,0.15); }
+    .gallery-item img { width:100%; height:100%; min-height:250px; object-fit:cover; flex-grow:1; transition:transform 0.5s ease; }
+    .gallery-item:hover img { transform:scale(1.05); }
+    .gallery-caption { padding:1.2rem; background:var(--navy); border-top:3px solid var(--blue); z-index:2; position:relative; }
+    .gallery-caption b { display:block; color:var(--white); font-size:1.1rem; margin-bottom:4px; }
+    .gallery-caption small { color:var(--muted); font-size:0.9rem; }
+
+    footer { background:#0b1a2e; color:#fff; padding:35px 0 15px; margin-top:40px; }
+    .footer-grid { display:flex; justify-content:space-between; gap:30px; align-items:left; border-bottom:1px solid rgba(255,255,255,.08); padding-bottom:20px; margin-bottom:20px; }
+    .footer-brand { color:#fff; font-size:1.2rem; font-weight:700; text-decoration:none; display:flex; align-items:left; gap:10px; }
+    .footer-grid p { font-size:12px; color:#92a3b6; margin-top:10px; }
+    .social-wrapper { display:flex; gap:15px; }
+    .social-wrapper a { color:#fff; font-size:1.5rem; transition:color 0.3s; }
+    .social-wrapper a:hover { color:var(--blue); }
+    .copyright { text-align:center; color:#73879d; font-size:11px; }
+    .top-btn { position:fixed; right:18px; bottom:18px; width:42px; height:42px; border:0; border-radius:50%; background:var(--blue); color:#fff; font-size:18px; display:none; cursor:pointer; }
+
+    @media (max-width:768px) {
+        .nav-links { display:none; position:absolute; top:74px; left:0; right:0; background:#fff; padding:15px 4%; flex-direction:column; align-items:center; border-bottom:1px solid var(--line); }
+        .nav-links.open { display:flex; }
+        .nav-links a { padding:10px; width:100%; text-align:center; color:var(--navy); }
+        .menu-toggle { display:block; }
+        .page-hero h1 { font-size:2.2rem; }
+        .gallery-item.tall { grid-row:span 1; }
+        .footer-grid { flex-direction:column; text-align:left; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav container">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">
+        <img src="images/logo/Dr.-Annaji-Madavi.jpg" height="50px" width="40px" alt="Dr. Annaji Madavi Logo">
+      </span>
+      <span>Dr. Annaji Madavi</span>
+    </a>
+    <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="family.html">Family</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">MEMORIES • ACADEMIC LIFE • MOMENTS</span>
+    <h1>Photo Gallery</h1>
+    <p>A responsive gallery for academic events, classroom moments, conferences, achievements and special memories.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="gallery-grid">
+      
+      <div class="gallery-item">
+        <img src="images/gallery/photo-1.jpg" alt="Adarsh College Hingoli" loading="lazy">
+        <div class="gallery-caption">
+          <b>Adarsh College Hingoli (M.S.)</b>
+          <small>My workplace</small>
+        </div>
+      </div>
+      
+      <div class="gallery-item tall">
+        <img src="images/gallery/photo-2.jpg" alt="Dr. Arun Tawar" loading="lazy">
+        <div class="gallery-caption">
+          <b>Dr. Arun Tawar</b>
+          <small>My Research Guide</small>
+        </div>
+      </div>
+      
+      <div class="gallery-item">
+        <img src="images/gallery/photo-3.jpg" alt="Annual Gathering" loading="lazy">
+        <div class="gallery-caption">
+          <b>Annual Gathering</b>
+          <small>2023</small>
+        </div>
+      </div>
+      
+      <div class="gallery-item">
+        <img src="images/gallery/photo-4.jpg" alt="Welcoming the New Year" loading="lazy">
+        <div class="gallery-caption">
+          <b>Welcoming the New Year</b>
+          <small>2020</small>
+        </div>
+      </div>
+      
+      <div class="gallery-item tall">
+        <img src="images/gallery/photo-5.jpg" alt="Organization of Guest Lecture" loading="lazy">
+        <div class="gallery-caption">
+          <b>Organization of Guest Lecture</b>
+          <small>2015</small>
+        </div>
+      </div>
+      
+      <div class="gallery-item">
+        <img src="images/gallery/photo-6.jpg" alt="Essay Writing Competition" loading="lazy">
+        <div class="gallery-caption">
+          <b>Essay Writing Competition</b>
+          <small>2019</small>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="images/gallery/photo-7.jpg" alt="D-CAP Coordinator Appreciation" loading="lazy">
+        <div class="gallery-caption">
+          <b>Certificate of D-CAP Coordinator Appreciation</b>
+          <small>2023</small>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="images/gallery/photo-8.jpg" alt="Photoshoot at SRTMU Nanded" loading="lazy">
+        <div class="gallery-caption">
+          <b>Photoshoot at School of Social Sciences, SRTMU Nanded.</b>
+          <small>2025</small>
+        </div>
+      </div>
+      
+      <div class="gallery-item">
+        <img src="images/gallery/photo-9.jpg" alt="Class Test Exam" loading="lazy">
+        <div class="gallery-caption">
+          <b>Class Test Exam. B. A. T.Y.</b>
+          <small>2025</small>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="images/gallery/photo-10.jpg" alt="Special Summer School" loading="lazy">
+        <div class="gallery-caption">
+          <b>Special Summer School Pt. R. S. University, Raipur (CG)</b>
+          <small>2016</small>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div><a class="brand footer-brand" href="#home"><span class="brand-mark"> <img src=" images\logo\Dr.-Annaji-Madavi.jpg" height="30px" width="25px" > </span><span> Dr. Annaji Madavi</span></a><p>Academic website for Economics students.</p></div>
+    
+  
+
+      <div class="wrapper"> 
+           <a href="https://www.facebook.com/annaji.madavi">
+            <i class="fa-brands fa-facebook"></i></a>
+       
+       
+          <a href="https://x.com/AnnajiMadavi">
+          <i class="fa-brands fa-square-twitter"></i></a>
+      
+          <a href="https://www.instagram.com/annaji.madavi/"> <i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/annajimadavi/"><i class="fa-brands fa-square-linkedin"></i></a>  </div>
+       
+              </div>   
+              </div>
+
+  <div class="container copyright">© 2026 | Dr. Annaji Madavi. All rights reserved.</div>
+</footer>
+
+<button id="topBtn" class="top-btn" aria-label="Back to top">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>

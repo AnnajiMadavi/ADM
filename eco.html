@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department of Economics | Adarsh College Hingoli</title>
+
+    <style>
+        /* --- CSS Reset & Variables --- */
+        :root {
+            --primary-color: #0d3b66; /* Deep professional blue */
+            --primary-light: #16568c;
+            --accent-color: #f4a261; /* Soft orange accent */
+            --bg-color: #f7f9fa;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --border-color: #e1e4e8;
+            --success-color: #28a745;
+            --success-hover: #218838;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* --- Container & Layout --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        /* --- Header Styling --- */
+        header {
+            text-align: center;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        header h2 {
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 25px;
+        }
+
+        .prof-profile {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: transform 0.2s ease;
+        }
+
+        .prof-profile:hover {
+            transform: translateY(-3px);
+        }
+
+        .prof-profile img {
+            border-radius: 50%;
+            border: 3px solid var(--border-color);
+            object-fit: cover;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .prof-profile h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            border: none;
+        }
+
+        .prof-profile span {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* --- Section Headings --- */
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 8px;
+            margin: 40px 0 20px 0;
+            display: inline-block;
+        }
+
+        /* --- Accordion (Details/Summary) Styling --- */
+        details {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        summary {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 16px 20px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s ease;
+        }
+
+        summary:hover {
+            background-color: var(--primary-light);
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            line-height: 1;
+            transition: transform 0.3s;
+        }
+
+        details[open] > summary::after {
+            content: '−'; /* Minus sign when open */
+        }
+
+        .dropdown-content {
+            padding: 20px;
+            background-color: #fafbfc;
+        }
+
+        /* Nested Accordions */
+        .semester-details {
+            border: 1px solid var(--border-color);
+            box-shadow: none;
+            margin-bottom: 12px;
+        }
+
+        .semester-summary {
+            background-color: #edf2f7;
+            color: var(--primary-color);
+            font-size: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .semester-summary:hover {
+            background-color: #e2e8f0;
+        }
+
+        .inner-details {
+            border: 1px dashed var(--border-color);
+        }
+
+        .inner-summary {
+            background-color: #ffffff;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .inner-summary:hover {
+            background-color: #f8f9fa;
+        }
+
+        /* --- Tables --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: #f8f9fa;
+        }
+
+        td:first-child {
+            font-weight: 500;
+            color: var(--text-main);
+            width: 75%;
+        }
+
+        td:last-child {
+            text-align: right;
+            width: 25%;
+        }
+
+        /* --- Buttons --- */
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--success-color);
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background-color 0.2s, transform 0.1s;
+            white-space: nowrap;
+        }
+
+        .download-btn:hover {
+            background-color: var(--success-hover);
+            transform: translateY(-1px);
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            header h2 {
+                font-size: 1.1rem;
+            }
+
+            summary {
+                padding: 12px 15px;
+                font-size: 0.95rem;
+            }
+
+            .dropdown-content {
+                padding: 10px;
+            }
+
+            /* Responsive tables for mobile */
+            table, tbody, tr, td {
+                display: block;
+                width: 100%;
+            }
+
+            tr {
+                margin-bottom: 10px;
+                border: 1px solid var(--border-color);
+                border-radius: 6px;
+                padding: 10px;
+            }
+
+            td {
+                text-align: left;
+                padding: 8px 0;
+                border-bottom: none;
+            }
+
+            td:first-child {
+                width: 100%;
+                border-bottom: 1px dashed var(--border-color);
+                margin-bottom: 10px;
+                padding-bottom: 10px;
+            }
+
+            td:last-child {
+                text-align: left;
+                width: 100%;
+            }
+
+            .download-btn {
+                width: 100%;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>ADARSH COLLEGE HINGOLI</h1>
+        <h2>DEPARTMENT OF ECONOMICS</h2>
+
+        <a class="prof-profile" href="https://annajimadavi.in">
+            <img src="images/logo/Dr.-Annaji-Madavi.jpg" height="100" width="100" alt="Dr. Annaji Madavi">
+            <h3>Dr. Annaji Madavi</h3>
+            <span>Head, Department of Economics</span>
+        </a>
+    </header>
+
+    <h3 class="section-title">COURSE CODE & PAPER TITLE</h3>
+    <details>
+        <summary>View Complete Course Codes</summary>
+        <div class="dropdown-content">
+            <table>
+                <tr>
+                    <td>Complete Course Code & Paper Titles Document</td>
+                    <td><a href="SYllABUS/ECO-PAPER CODE & PAPER TITLE.pdf" class="download-btn">View/Download</a></td>
+                </tr>
+            </table>
+        </div>
+    </details>
+
+    <h3 class="section-title">B. A. ECONOMICS SYLLABUS</h3>
+    
+    <details>
+        <summary>B.A. FIRST YEAR</summary>
+        <div class="dropdown-content">
+            <table>
+                <tr>
+                    <td>Semester-I</td>
+                    <td><a href="SYllABUS/बी.-ए.-सेमि.-I-अभ्यासक्रम.pdf" class="download-btn">View/Download</a></td>
+                </tr>
+                <tr>
+                    <td>Semester-II</td>
+                    <td><a href="SYllABUS/बी.-ए.-सेमि.-II-अभ्यासक्रम.pdf" class="download-btn">View/Download</a></td>
+                </tr>
+            </table>
+        </div>
+    </details>
+
+    <details>
+        <summary>B.A. SECOND YEAR</summary>
+        <div class="dropdown-content">
+            <table>
+                <tr>
+                    <td>Semester-III</td>
+                    <td><a href="SYllABUS/सेमि.-III-अभ्यासक्रम.pdf" class="download-btn">View/Download</a></td>
+                </tr>
+                <tr>
+                    <td>Semester-IV</td>
+                    <td><a href="SYllABUS/बी. ए. सेमि. IV अभ्यासक्रम.pdf" class="download-btn">View/Download</a></td>
+                </tr>
+            </table>
+        </div>
+    </details>
+
+    <details>
+        <summary>B.A. THIRD YEAR</summary>
+        <div class="dropdown-content">
+            <table>
+                <tr>
+                    <td>Semester-V</td>
+                    <td><a href="SYllABUS/सेमि.-V-अभ्यासक्रम.pdf" class="download-btn">View/Download</a></td>
+                </tr>
+                <tr>
+                    <td>Semester-VI</td>
+                    <td><a href="#" class="download-btn">View/Download</a></td>
+                </tr>
+            </table>
+        </div>
+    </details>
+
+    <h3 class="section-title">B. A. ECONOMICS E-BOOKS/NOTES</h3>
+    
+    <details>
+        <summary>B.A. FIRST YEAR</summary>
+        <div class="dropdown-content">
+            <details class="semester-details">
+                <summary class="semester-summary">Semester-I</summary>
+                <div class="dropdown-content">
+                    <table>
+                        <tr><td>1) भारतीय अर्थव्यवस्था-भाग ०१</td><td><a href="E-BOOKS-NOTES/भारतीय अर्थव्यवस्था-भाग ०१.pdf" class="download-btn">View/Download</a></td></tr>
+                        <tr><td>2) पर्यावरणीय अर्थशास्त्र-भाग-०१</td><td><a href="E-BOOKS-NOTES/पर्यावरणीय अर्थशास्त्र-भाग-०१.pdf" class="download-btn">View/Download</a></td></tr>
+                        <tr><td>3) VSEC- ई- बँकिंग</td><td><a href="E-BOOKS-NOTES/VSEC- ई- बँकिंग.pdf" class="download-btn">View/Download</a></td></tr>
+                    </table>
+                </div>
+            </details>
+            <details class="semester-details">
+                <summary class="semester-summary">Semester-II</summary>
+                <div class="dropdown-content">
+                    <table>
+                        <tr><td>1) भारतीय अर्थव्यवस्था - भाग ०२</td><td><a href="E-BOOKS-NOTES/भारतीय अर्थव्यवस्था - भाग ०२.pdf" class="download-btn">View/Download</a></td></tr>
+                        <tr><td>2) पर्यावरणीय अर्थशास्त्र -भाग -०२</td><td><a href="E-BOOKS-NOTES/पर्यावरणीय अर्थशास्त्र -भाग -०२.pdf" class="download-btn">View/Download</a></td></tr>
+                        <tr><td>3) VSEC -पर्यटनाचे अर्थशास्त्र</td><td><a href="E-BOOKS-NOTES/VSEC -पर्यटनाचे अर्थशास्त्र.pdf" class="download-btn">View/Download</a></td></tr>
+                    </table>
+                </div>
+            </details>
+        </div>
+    </details>
+
+    <details>
+        <summary>B.A. SECOND YEAR</summary>
+        <div class="dropdown-content">
+            <details class="semester-details">
+                <summary class="semester-summary">Semester-III</summary>
+                <div class="dropdown-content">
+                    <table>
+                        <tr><td>1) MAJOR - सूक्ष्म अर्थशास्त्र -भाग ०१</td><td><a href="E-BOOKS-NOTES/MAJOR - सूक्ष्म अर्थशास्त्र -भाग ०१.pdf" class="download-btn">View/Download</a></td></tr>
+                        <tr><td>2) MAJOR- कृषि अर्थशास्त्र भाग -०१</td><td><a href="E-BOOKS-NOTES/MAJOR- कृषि अर्थशास्त्र भाग -०१.pdf" class="download-btn">View/Download</a></td></tr>
+                        <tr><td>3) MINOR-स्पर्धा-परीक्षेसाठी-भारतीय-अर्थशास्त्र</td><td><a href="E-BOOKS-NOTES/MINOR-स्पर्धा-परीक्षेसाठी-भारतीय-अर्थशास्त्र.pdf" class="download-btn">View/Download</a></td></tr>
+                        <tr><td>4) VSEC - उद्योजक्ता विकास</td><td><a href="E-BOOKS-NOTES/VSEC - उद्योजक्ता विकास.pdf" class="download-btn">View/Download</a></td></tr>
+                        <tr><td>5) Book Name</td><td><a href="#" class="download-btn">View/Download</a></td></tr>
+                    </table>
+                </div>
+            </details>
+            <details class="semester-details">
+                <summary class="semester-summary">Semester-IV</summary>
+                <div class="dropdown-content">
+                    <table>
+                        <tr><td>1) MAJOR - सूक्ष्म अर्थशास्त्र - भाग-०२</td><td><a href="E-BOOKS-NOTES/MAJOR - सूक्ष्म अर्थशास्त्र - भाग-०२.pdf" class="download-btn">View/Download</a></td></tr>
+                        <tr><td>2) MAJOR - कृषि अर्थशास्त्र- भाग-०२</td><td><a href="E-BOOKS-NOTES/MAJOR - कृषि अर्थशास्त्र- भाग-०२.pdf" class="download-btn">View/Download</a></td></tr>
+                        <tr><td>3) MINOR-स्पर्धा-परीक्षेचे-बँकिंग</td><td><a href="E-BOOKS-NOTES/MINOR-स्पर्धा-परीक्षेचे-बँकिंग.pdf" class="download-btn">View/Download</a></td></tr>
+                        <tr><td>4) VSEC -ग्रामीण  उद्योजक्ता</td><td><a href="E-BOOKS-NOTES/VSEC -ग्रामीण  उद्योजक्ता.pdf" class="download-btn">View/Download</a></td></tr>
+                        <tr><td>5) Book Name</td><td><a href="#" class="download-btn">View/Download</a></td></tr>
+                    </table>
+                </div>
+            </details>
+        </div>
+    </details>
+
+    <details>
+        <summary>B.A. THIRD YEAR</summary>
+        <div class="dropdown-content">
+            <details class="semester-details">
+                <summary class="semester-summary">Semester-V</summary>
+                <div class="dropdown-content">
+                    <table>
+                        <tr><td>1) MAJOR - स्थूल  अर्थशास्त्र -भाग ०१</td><td><a href="E-BOOKS-NOTES/MAJOR - स्थूल  अर्थशास्त्र -भाग ०१.pdf" class="download-btn">View/Download</a></td></tr>
+                        <tr><td>2) E-BOOK (स्थूल अर्थशास्त्र)</td><td><a href="E-BOOKS-NOTES/E-BOOK (स्थूल अर्थशास्त्र).pdf" class="download-btn">View/Download</a></td></tr>
+                        <tr><td>3) Book Name</td><td><a href="#" class="download-btn">View/Download</a></td></tr>
+                        <tr><td>4) ELECTVIE -औद्योगिक अर्थशास्त्र</td><td><a href="E-BOOKS-NOTES/ELECTVIE -औद्योगिक अर्थशास्त्र.pdf" class="download-btn">View/Download</a></td></tr>
+                    </table>
+                </div>
+            </details>
+            <details class="semester-details">
+                <summary class="semester-summary">Semester-VI</summary>
+                <div class="dropdown-content">
+                    <table>
+                        <tr><td>1) Book Name</td><td><a href="#" class="download-btn">View/Download</a></td></tr>
+                        <tr><td>2) Book Name</td><td><a href="#" class="download-btn">View/Download</a></td></tr>
+                        <tr><td>3) Book Name</td><td><a href="#" class="download-btn">View/Download</a></td></tr>
+                        <tr><td>4) Book Name</td><td><a href="#" class="download-btn">View/Download</a></td></tr>
+                    </table>
+                </div>
+            </details>
+        </div>
+    </details>
+
+    <h3 class="section-title">SRTMUN EXAMINATION QUESTION PAPER</h3>
+    
+    <!-- Summer Exam -->
+    <details>
+        <summary>SUMMER EXAMINATION</summary>
+        <div class="dropdown-content">
+            
+            <!-- Year 2025 -->
+            <details class="semester-details">
+                <summary class="semester-summary">SUMMMER 2025</summary>
+                <div class="dropdown-content">
+                    <details class="inner-details">
+                        <summary class="inner-summary">CBCS (OLD)</summary>
+                        <div class="dropdown-content">
+                            <table>
+                                <tr><td>Paper I- (Micro Economics)</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMER  2025\CBCS(OLD)/Paper I- (Micro Economics).pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper II- (Economy of Maharashtra)</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMER  2025\CBCS(OLD)/Paper II- (Economy of Maharashtra).pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-III- (Micro Economics)</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMER  2025\CBCS(OLD)/Paper-III- (Micro Economics).pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper IV- (Economy of Maharashtra)</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMER  2025\CBCS(OLD)/Paper IV- (Economy of Maharashtra).pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper V- (Macro-economics–I)</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMER  2025\CBCS(OLD)/Paper V- (Macro-Economics–I).pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper–VII- (Macro-Economics–II)</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMER  2025\CBCS(OLD)/Paper–VII- (Macro-Economics–II).pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper–VIII-(Economics of Development and Environment)</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMER  2025\CBCS(OLD)/Paper–VIII-(Economics of Development and Environment).pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper XI- (International Economics)</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMER  2025\CBCS(OLD)/Paper XI- (International Economics).pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper XII- (Public Finance)</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMER  2025\CBCS(OLD)/Paper XII- (Public Finance).pdf" class="download-btn">View/Download</a></td></tr>
+                            </table>
+                        </div>
+                    </details>
+                    <details class="inner-details">
+                        <summary class="inner-summary">NEP (2020)</summary>
+                        <div class="dropdown-content">
+                            <table>
+                                <tr><td>Paper-I (Indian Economy - I)  HECOT-1101</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMER  2025\NEP(2020)/Paper-I (Indian Economy - I)  HECOT-1101.pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-II (Environmental Economics-I) HECOCT-1102</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMER  2025\NEP(2020)/Paper-II (Environmental Economics-I) HECOCT-1102.pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-III (Indian Economy - II) -HECOCT-1151</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMER  2025\NEP(2020)/Paper-III (Indian Economy - II) -HECOCT-1151.pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-IV (Environmental Economics-II) HECOCT-1152</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMER  2025\NEP(2020)/Paper-IV (Environmental Economics-II) HECOCT-1152.pdf" class="download-btn">View/Download</a></td></tr>
+                            </table>
+                        </div>
+                    </details>
+                </div>
+            </details>
+
+            <!-- Year 2026 -->
+            <details class="semester-details">
+                <summary class="semester-summary">SUMMER 2026</summary>
+                <div class="dropdown-content">
+                    <details class="inner-details">
+                        <summary class="inner-summary">CBCS (OLD)</summary>
+                        <div class="dropdown-content">
+                            <table>
+                                <tr><td>Paper-V (Macro Economics–I)</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMMER  2026\CBCS(OLD)/Paper-V (Macro Economics–I).pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-VI (Economics of Development)</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMMER  2026\CBCS(OLD)/Paper-VI (Economics of Development).pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-VII (Macro-Economics–II)</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMMER  2026\CBCS(OLD)/Paper-VII (Macro-Economics–II).pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-X (Indian Economy)</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMMER  2026\CBCS(OLD)/Paper-X (Indian Economy).pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-XII (Public Finance)</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMMER  2026\CBCS(OLD)/Paper-XII (Public Finance).pdf" class="download-btn">View/Download</a></td></tr>
+                            </table>
+                        </div>
+                    </details>
+                    <details class="inner-details">
+                        <summary class="inner-summary">NEP (2020)</summary>
+                        <div class="dropdown-content">
+                            <table>
+                                <tr><td>Paper-I (Indian Economy-I) -HECOCT-1101</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMMER  2026\NEP(2020)/Paper-I (Indian Economy-I) -HECOCT-1101.pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-II (Environmental Economics-I) HECOCT-1102</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMMER  2026\NEP(2020)/Paper-II (Environmental Economics-I) HECOCT-1102.pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-III (Indian Economy-II) -HECOCT-1151</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMMER  2026\NEP(2020)/Paper-III (Indian Economy-II) -HECOCT-1151.pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-IV (Environmental Economics-II) HECOCT-1152</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMMER  2026\NEP(2020)/Paper-IV (Environmental Economics-II) HECOCT-1152.pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-V Major (Micro-Economics–I) -HECOCT- 1201</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMMER  2026\NEP(2020)/Paper-V Major (Micro-Economics–I) -HECOCT- 1201.pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-VI Major (Agricultural Economics-I) HECOCT-1202</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMMER  2026\NEP(2020)/Paper-VI Major (Agricultural Economics-I) HECOCT-1202.pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-VII Minor (Indian Economics for Competitive Examination) HECOMT-1201</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMMER  2026\NEP(2020)/Paper-VII Minor (Indian Economics for Competitive Examination) HECOMT-1201.pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-VIII Major (Micro-Economics–II) HECOCT-1251</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMMER  2026\NEP(2020)/Paper-VIII Major (Micro-Economics–II) HECOCT-1251.pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-IX Major (Agricultural Economics-II) HECOCT-1252</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMMER  2026\NEP(2020)/Paper-IX Major (Agricultural Economics-II) HECOCT-1252.pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-X Minor (Banking for Competitive Examination)</td><td><a href="SRTMUN PAPER\SUMMER EXAMINATION\SUMMMER  2026\NEP(2020)/Paper-X Minor (Banking for Competitive Examination).pdf" class="download-btn">View/Download</a></td></tr>
+                            </table>
+                        </div>
+                    </details>
+                </div>
+            </details>
+        </div>
+    </details>
+
+    <!-- Winter Exam -->
+    <details>
+        <summary>WINTER EXAMINATION</summary>
+        <div class="dropdown-content">
+            
+            <!-- Year 2024 -->
+            <details class="semester-details">
+                <summary class="semester-summary">WINTER 2024</summary>
+                <div class="dropdown-content">
+                    <details class="inner-details">
+                        <summary class="inner-summary">CBCS (OLD)</summary>
+                        <div class="dropdown-content">
+                            <table>
+                                <tr><td>Paper-I Micro Economics</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2024\CBCS(OLD)/Paper-I Micro Economics.PDF" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper–II Economy of Maharashtra</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2024\CBCS(OLD)/Paper–II Economy of Maharashtra.PDF" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper–III Micro Economics</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2024\CBCS(OLD)/Paper–III Micro Economics.PDF" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper–IV Economy of Maharashtra</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2024\CBCS(OLD)/Paper–IV Economy of Maharashtra.PDF" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-V Macro Economics</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2024\CBCS(OLD)/Paper-V Macro Economics.PDF" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper–VI Economics of Development</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2024\CBCS(OLD)/Paper–VI Economics of Development.PDF" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper–VII Macro Economics</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2024\CBCS(OLD)/Paper–VII Macro Economics.PDF" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-VIII Economics of development & Environment</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2024\CBCS(OLD)/Paper-VIII Economics of development & Environment.PDF" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-IX Industrial Economics</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2024\CBCS(OLD)/Paper-IX Industrial Economics.PDF" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-X Indian Economy</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2024\CBCS(OLD)/Paper-X Indian Economy.PDF" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-XI International Economics</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2024\CBCS(OLD)/Paper-XI  International Economics.PDF" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-XI History of Economic Thout</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2024\CBCS(OLD)/Paper-XI History of Economic Thout.PDF" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-XII Public Finance</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2024\CBCS(OLD)/Paper-XII Public Finance.PDF" class="download-btn">View/Download</a></td></tr>
+                            </table>
+                        </div>
+                    </details>
+                    <details class="inner-details">
+                        <summary class="inner-summary">NEP (2020)</summary>
+                        <div class="dropdown-content">
+                            <table>
+                                <tr><td>Paper-I (Indian Economy-I) HECOCT–1101</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2024\NEP(2020)/Paper-I (Indian Economy-I) HECOCT–1101.PDF" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-II (Environmental Economics-I) HECOCT–1102</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2024\NEP(2020)/Paper-II (Environmental Economics-I) HECOCT–1102.PDF" class="download-btn">View/Download</a></td></tr>
+                            </table>
+                        </div>
+                    </details>
+                </div>
+            </details>
+
+            <!-- Year 2025 -->
+            <details class="semester-details">
+                <summary class="semester-summary">WINTER 2025</summary>
+                <div class="dropdown-content">
+                    <details class="inner-details">
+                        <summary class="inner-summary">CBCS (OLD)</summary>
+                        <div class="dropdown-content">
+                            <table>
+                                <tr><td>PAPER-I (Micro Economics)</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2025\CBCS(OLD)/PAPER-I-Micro Economics.PDF" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>PAPER-II (Economy of Maharashtra)</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2025\CBCS(OLD)/PAPER-II (Economy of Maharashtra).PDF" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>PAPER-III (Micro Economics-II)</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2025\CBCS(OLD)/PAPER-III (Micro Economics-II).pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>PAPER-IV (Economy of Maharashtra)</td><td><a href="SSRTMUN PAPER\WINTER EXAMINATION\WINTER  2025\CBCS(OLD)/PAPER-IV (Economy of Maharashtra).PDF" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>PAPER-V (Macro Economics-I)</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2025\CBCS(OLD)/PAPER-V (Macro Economics-I).PDF" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>PAPER-VI (Economics of Development)</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2025\CBCS(OLD)/PAPER-VI (Economics of Development).pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>PAPER-VII (Macro Economics)</td><td><a href="SSRTMUN PAPER\WINTER EXAMINATION\WINTER  2025\CBCS(OLD)/PAPER-VII (Macro Economics).PDF" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>PAPER-VIII (Economics of Development and Environment)</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2025\CBCS(OLD)/PAPER-VIII (Economics of Development and Environment).PDF" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>PAPER-IX (Industrial Economics)</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2025\CBCS(OLD)/PAPER-IX (Industrial Economics).pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>PAPER-X (Indian Economy)</td><td><a href="SSRTMUN PAPER\WINTER EXAMINATION\WINTER  2025\CBCS(OLD)/PAPER-X (Indian Economy).PDF" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>PAPER-XI (International Economics</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2025\CBCS(OLD)/PAPER-XI (International Economics.PDF" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>PAPER-XII (Public Finance)</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2025\CBCS(OLD)/PAPER-XII (Public Finance).pdf" class="download-btn">View/Download</a></td></tr>
+                            </table>
+                        </div>
+                    </details>
+                    <details class="inner-details">
+                        <summary class="inner-summary">NEP (2020)</summary>
+                        <div class="dropdown-content">
+                            <table>
+                                <tr><td>Paper-I (Indian Economy) HECOCT-IIOI</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2025\NEP(2020)/Paper-I (Indian Economy) HECOCT-IIOI.pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-II (Environmental Economics-I) HECOCT-1102</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2025\NEP(2020)/Paper-II (Environmental Economics-I) HECOCT-1102.pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-III (Indian Economy-II) HECOCT-1151</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2025\NEP(2020)/Paper-III (Indian Economy-II) HECOCT-1151.pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-IV (Environmental Economics-II) HECOCT1152</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2025\NEP(2020)/Paper-IV (Environmental Economics-II) HECOCT1152.pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-V Major (Micro Economics-I) HECOCT-1201</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2025\NEP(2020)/Paper-V Major (Micro Economics-I) HECOCT-1201.pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-VI Major (Agricultural Economics-I) HECOCT1202</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2025\NEP(2020)/Paper-VI Major (Agricultural Economics-I) HECOCT1202.pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper-VII Minor (Indian Economics for Competitive Examination) HECOMT-1201</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2025\NEP(2020)/Paper-VII Minor (Indian Economics for Competitive Examination) HECOMT-1201.pdf" class="download-btn">View/Download</a></td></tr>
+                                <tr><td>Paper- IKS-IIOI (SEM II)</td><td><a href="SRTMUN PAPER\WINTER EXAMINATION\WINTER  2025\NEP(2020)/Paper IKS-IIOI (SEM II).pdf" class="download-btn">View/Download</a></td></tr>
+                            </table>
+                        </div>
+                    </details>
+                </div>
+            </details>
+        </div>
+    </details>
+
+    <h3 class="section-title">B. A. ECONOMICS TIME TABLE</h3>
+    <details>
+        <summary>View Time Table</summary>
+        <div class="dropdown-content">
+            <table>
+                <tr>
+                    <td>ACADEMIC YEAR 2026-27</td>
+                    <td><a href="DOCUMENTS/ECO TIME TABLE 2026-27.pdf" class="download-btn">View/Download</a></td>
+                </tr>
+            </table>
+        </div>
+    </details>
+
+    <h3 class="section-title">B. A. ECONOMICS STUDENTS ROLLCALL LIST</h3>
+    <details>
+        <summary>ROLL No. & SUBJECT</summary>
+        <div class="dropdown-content">
+            <table>
+                <tr>
+                    <td>B.A. FIRST YEAR</td>
+                    <td><a href="ROLL CALL\2026-27/ROLL CALL B.A. I YEAR.pdf" class="download-btn">View/Download</a></td>
+                </tr>
+                <tr>
+                    <td>B.A. SECOND YEAR</td>
+                    <td><a href="ROLL CALL\2026-27/ROLL CALL B.A. II YEAR.pdf" class="download-btn">View/Download</a></td>
+                </tr>
+                <tr>
+                    <td>B.A. THIRD YEAR</td>
+                    <td><a href="ROLL CALL\2026-27/ROLL CALL B.A. III YEAR.pdf" class="download-btn">View/Download</a></td>
+                </tr>
+            </table>
+        </div>
+    </details>
+</div>
+
+</body>
+</html>
