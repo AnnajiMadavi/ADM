@@ -1,9 +1,5 @@
 <?php
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit;
-}
+
 
 $library_resources = [
     [ "title" => "भारतीय अर्थव्यवस्था-भाग ०१", "category" => "भारतीय अर्थव्यवस्था-भाग ०१", "type" => "SEMESTER - I", "year" => "B. A. First Year", "file_url" => "E-BOOKS-NOTES/भारतीय अर्थव्यवस्था-भाग ०१.pdf", "cover_color" => "#1565c0" ],
